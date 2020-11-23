@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "958052769501",
+    "firebase_url": "https://alertacucuta.firebaseio.com",
+    "project_id": "alertacucuta",
+    "storage_bucket": "alertacucuta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958052769501:android:e29b892e4ce57fdadbc534",
+        "android_client_info": {
+          "package_name": "com.example.alertacucuta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "958052769501-gjkbq4bgpr27pqsihogslpr51qn5nvtv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alertacucuta",
+            "certificate_hash": "ea2dee7bf08917a93bb26de1c0fa7b47dbbbb8b6"
+          }
+        },
+        {
+          "client_id": "958052769501-treq25hl4lm0bp3n4o7fi3mrkjtc5mdj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqPB8hBRZxJzhxCU7Dg0Y7Y_zH0Y7sQyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "958052769501-treq25hl4lm0bp3n4o7fi3mrkjtc5mdj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

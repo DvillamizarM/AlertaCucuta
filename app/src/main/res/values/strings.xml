@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">AlertaCucuta</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Iniciar Sesión</string>
+    <string name="registroLink"><u>Dale click aquí para crear un nuevo usuario</u></string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <string name="registroU">Registro de Usuario</string>
+    <string name="nombreTitleU">Nombres:</string>
+    <string name="nombreHolderU">Ingrese sus nombres aquí: </string>
+    <string name="apellidoTitleU">Apellidos:</string>
+    <string name="apellidoHolderU">Ingrese sus apellidos aquí: </string>
+    <string name="cedulaTitleU">Cédula:</string>
+    <string name="cedulaHolderU">Ingrese sus numero de cédula aquí: </string>
+    <string name="telefonoTitleU">Telefono:</string>
+    <string name="telefonoHolderU">Ingrese sus número de celular aquí: </string>
+    <string name="correoTitleU">Correo:</string>
+    <string name="correoHolderU">Ingrese sus correo electrónico aquí: </string>
+    <string name="contrasenaTitleU">Contraseña:</string>
+    <string name="contrasenaHolderU">Ingrese sus contraseña de 8 dígitos o más: </string>
+    <string name="direccionTitleU">Dirección:</string>
+    <string name="direccionHolderU">Ingrese su dirección de residencia aquí: </string>
+    <string name="barrioTitleU">Barrio:</string>
+    <string name="barrioHolderU">Seleccione el barrio: </string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="btnRegistroUsario">Crear nuevo usuario</string>
+
+    <string name="registroaccidente">Reporte de Accidente</string>
+    <string name="registrocrimen">Reporte de Crimen</string>
+    <string name="registroadesastre">Reporte de Desastre</string>
+    <string name="registrcai">Registro de CAI</string>
+
+    <string name="tipoTitleA">Tipo de Accidente</string>
+    <string name="tipoTitleC">Tipo de Crimen</string>
+    <string name="tipoTitleD">Tipo de Desastre</string>
+    <string name="tipoHolderA">Seleccione el tipo de Accidente</string>
+    <string name="tipoHolderC">Seleccione el tipo de Crimen</string>
+    <string name="tipoHolderD">Seleccione el tipo de Desastre</string>
+    <string name="titleDescripcion">Descripción</string>
+    <string name="descripcionHolder">Ingrese la descripción general del caso</string>
+    <string name="descripcionVictimaTitle">Descripción de la(s) víctimas: </string>
+    <string name="descripcionVictimaHolder">Ingrese una descripción detallada de la víctima</string>
+    <string name="descripcionSospechosoTitle">Descripción de lo(s) sospechosos: </string>
+    <string name="descripcionSospechosoHolder">Ingrese una descripción detallada de los culpables</string>
+    <string name="horaTitle">Hora de incidente: </string>
+    <string name="horaHolderI">Ingrese la hora que ocurrio el incidente </string>
+    <string name="direccionHolderI">Ingrese la dirección de incidente aquí: </string>
+    <string name="btnRegistroCrimen">REPORTAR CRIMEN NUEVO</string>
+    <string name="btnRegistroDesastre">REPORTAR DESASTRE NUEVO</string>
+    <string name="btnRegistroAccidente">REPORTAR ACCIDENTE NUEVO</string>
+    <string name="btnRegistroCAI">CREAR CAI NUEVO</string>
+
+    <string name="listadocai">Listado de CAIs</string>
+    <string name="btnLLamarCAI">Llamar CAI</string>
+
+    <string name="navMenu">¿Qué tipo de emergencia quiere reportar?</string>
+    <string name="btnCrimen">CRIMEN</string>
+    <string name="btnDesastre">DESASTRE</string>
+    <string name="btnAccidente">ACCIDENTE</string>
+
+    <string name="navBack">Regresar</string>
+
+
+</resources>
