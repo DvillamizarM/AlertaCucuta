@@ -99,7 +99,7 @@
         android:id="@+id/buttonRegistroUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="37dp"
         android:background="?android:attr/selectableItemBackground"
         android:text="@string/registroLink"
         app:layout_constraintBottom_toBottomOf="parent"
