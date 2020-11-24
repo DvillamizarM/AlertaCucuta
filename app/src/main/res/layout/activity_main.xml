@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/view"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
 
     <LinearLayout
         android:id="@+id/menu"
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="69dp"
             android:enabled="false"
-            android:ems="10"
+            android:ems="8"
             android:gravity="start|top"
             android:hint="@string/navMenu"
             android:importantForAutofill="no"

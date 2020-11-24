@@ -18,8 +18,11 @@ import com.example.alertacucuta.Objetos.Accidente;
 import com.example.alertacucuta.Objetos.Usuario;
 import com.example.alertacucuta.ui.login.LoginActivity;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.RectangularBounds;
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,7 +42,7 @@ public class RegistroAccidente extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference mDatabase;
     Intent intent;
-//AIzaSyC8EtV1IG9Hq-DQpliQzbp_Nyc_JYEzQBk
+
     @BindView(R.id.barrioI) Spinner barrio;
     @BindView(R.id.direccionI) EditText direccion;
     @BindView(R.id.tipoI) Spinner tipo;
@@ -84,13 +87,17 @@ public class RegistroAccidente extends AppCompatActivity {
         });
 
 
-        Places.initialize(getApplicationContext(), "AIzaSyC8EtV1IG9Hq-DQpliQzbp_Nyc_JYEzQBk");
-
+        Places.initialize(getApplicationContext(), "AIzaSyCJE4v1u_fCq2X8TAa1FyjHMo_c6P8oW5I");
         direccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME);
-                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList).build(RegistroAccidente.this);
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList)
+                        .setLocationRestriction(RectangularBounds.newInstance(
+                                new LatLng(7.797340, -72.564975),
+                                new LatLng(7.959478, -72.454595)
+                        ))
+                        .build(RegistroAccidente.this);
                 startActivityForResult(intent, 100);
             }
         });
