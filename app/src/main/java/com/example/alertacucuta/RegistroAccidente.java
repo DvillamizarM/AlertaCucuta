@@ -64,9 +64,7 @@ public class RegistroAccidente extends AppCompatActivity {
         ButterKnife.bind(this);
 
         AuxMethods.createSpinner(AuxMethods.listaBarrios, barrio, this);
-        barrio.onSaveInstanceState();
         AuxMethods.createSpinner(AuxMethods.tiposAccidentes, tipo, this);
-        tipo.onSaveInstanceState();
         AuxMethods.createSpinner(AuxMethods.hora, hora, this);
         AuxMethods.createSpinner(AuxMethods.minuto, minuto, this);
         AuxMethods.createSpinner(AuxMethods.time, time, this);
@@ -79,13 +77,11 @@ public class RegistroAccidente extends AppCompatActivity {
                 return;
             }
             Accidente registro = new Accidente(user.getUid(), barrio.getSelectedItem().toString(), direccion.getText().toString(), tipo.getSelectedItem().toString(), descripcion.getText().toString(), descripcionVictima.getText().toString(), hora.getSelectedItem().toString()+":"+minuto.getSelectedItem().toString()+" "+time.getSelectedItem().toString());
-
             String keyId = mDatabase.push().getKey();
             mDatabase.child(keyId).setValue(registro);
             intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
-
 
         Places.initialize(getApplicationContext(), "AIzaSyCJE4v1u_fCq2X8TAa1FyjHMo_c6P8oW5I");
         direccion.setOnClickListener(new View.OnClickListener() {

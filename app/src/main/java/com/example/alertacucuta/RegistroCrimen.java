@@ -1,5 +1,6 @@
 package com.example.alertacucuta;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,10 +14,20 @@ import android.widget.Toast;
 
 import com.example.alertacucuta.Objetos.Accidente;
 import com.example.alertacucuta.Objetos.Crimen;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.RectangularBounds;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,6 +64,20 @@ public class RegistroCrimen extends AppCompatActivity {
         AuxMethods.createSpinner(AuxMethods.minuto, minuto, this);
         AuxMethods.createSpinner(AuxMethods.time, time, this);
 
+        Places.initialize(getApplicationContext(), "AIzaSyCJE4v1u_fCq2X8TAa1FyjHMo_c6P8oW5I");
+        direccion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME);
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList)
+                        .setLocationRestriction(RectangularBounds.newInstance(
+                                new LatLng(7.797340, -72.564975),
+                                new LatLng(7.959478, -72.454595)
+                        ))
+                        .build(RegistroCrimen.this);
+                startActivityForResult(intent, 100);
+            }
+        });
 
         btnRegistro.setOnClickListener(v -> {
             if(barrio.getSelectedItemPosition()==0 || TextUtils.isEmpty(direccion.getText().toString()) || tipo.getSelectedItemPosition()==0
@@ -68,10 +93,21 @@ public class RegistroCrimen extends AppCompatActivity {
             intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
-
     }
     public void back(View view){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 100 && resultCode == RESULT_OK){
+            Place place = Autocomplete.getPlaceFromIntent(data);
+            direccion.setText(place.getAddress());
+        }
+        else{
+            Status status = Autocomplete.getStatusFromIntent(data);
+            Toast.makeText(getApplicationContext(),status.getStatusMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 }

@@ -264,16 +264,12 @@
                 android:text="@string/barrioTitleU"
                 android:textSize="18sp" />
 
-            <EditText
+            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/barrioU"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:autofillHints=""
-                android:hint="@string/barrioHolderU"
-                android:inputType="text"
-                android:selectAllOnFocus="true" />
+                android:layout_marginEnd="12dp" />
 
             <Button
                 android:id="@+id/registerUsuario"
