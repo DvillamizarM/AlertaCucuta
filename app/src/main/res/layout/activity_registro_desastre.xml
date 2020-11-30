@@ -30,20 +30,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="38dp"
-        android:layout_height="35dp"
-        android:background="#000000"
-        android:contentDescription="@string/navBack"
-        app:layout_constraintBottom_toTopOf="@+id/seperator"
-        app:layout_constraintEnd_toStartOf="@+id/registerA"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seperator0"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/previous"
-        android:onClick="back"/>
 
     <TextView
         android:id="@+id/registerA"
@@ -54,9 +40,10 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/seperator"
-        app:layout_constraintTop_toBottomOf="@id/seperator0"
-        app:layout_constraintStart_toStartOf="@id/imageButton"
-        tools:layout_editor_absoluteX="26dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seperator0" />
 
     <TextView
         android:id="@+id/seperator"
@@ -64,6 +51,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/border_bottom"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registerA" />
 
 

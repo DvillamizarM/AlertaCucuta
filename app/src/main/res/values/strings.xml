@@ -65,6 +65,15 @@
     <string name="btnAccidente">ACCIDENTE</string>
 
     <string name="navBack">Regresar</string>
+    <string name="title_activity_map_info_window">map_info_window</string>
+
+
+    <string name="btnDesactivar">Reporte Resuelto</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 
 
 </resources>

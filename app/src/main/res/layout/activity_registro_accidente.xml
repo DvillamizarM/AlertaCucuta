@@ -30,18 +30,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="38dp"
-        android:layout_height="35dp"
-        android:background="#000000"
-        android:contentDescription="@string/navBack"
-        app:layout_constraintBottom_toTopOf="@+id/seperator"
-        app:layout_constraintStart_toStartOf="@+id/registerA"
-        app:layout_constraintTop_toBottomOf="@+id/seperator0"
-        app:srcCompat="@drawable/previous"
-        android:onClick="back"/>
-
     <TextView
         android:id="@+id/registerA"
         android:layout_width="match_parent"
@@ -51,6 +39,7 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/seperator"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/seperator0" />
 
@@ -94,7 +83,7 @@
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/barrioI"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_marginStart="12dp"
                 android:background="@drawable/border"
                 android:layout_marginEnd="12dp"
@@ -147,7 +136,7 @@
             <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                 android:id="@+id/tipoI"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:background="@drawable/border"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp" />
@@ -263,10 +252,25 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="48dp"
                 android:layout_marginTop="16dp"
+                android:visibility="visible"
                 android:layout_marginEnd="48dp"
                 android:layout_marginBottom="64dp"
                 android:background="@color/colorPrimaryDark"
                 android:text="@string/btnRegistroAccidente"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/btnDesactivarAccidnete"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="16dp"
+                android:visibility="invisible"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="64dp"
+                android:background="@color/rojo"
+                android:text="@string/btnDesactivar"
                 android:textColor="#ffffff" />
 
         </LinearLayout>

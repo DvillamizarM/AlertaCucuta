@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistroCrimen"
+    tools:context=".Mostrar"
     android:layout_margin="0dp"
     android:background="@drawable/background_gradient_register">
 
@@ -30,17 +30,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-
     <TextView
         android:id="@+id/registerA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/registrocrimen"
+        android:text="@string/registroaccidente"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/seperator"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/seperator0" />
 
@@ -49,8 +47,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border_bottom"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintTop_toBottomOf="@id/registerA" />
+        app:layout_constraintTop_toBottomOf="@id/registerA"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2" />
 
 
     <ScrollView
@@ -73,7 +71,7 @@
 
 
             <TextView
-                android:id="@+id/titlebarrioA"
+                android:id="@+id/titlebarrio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -81,12 +79,13 @@
                 android:text="@string/barrioTitleU"
                 android:textSize="18sp" />
 
-            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            <TextView
                 android:id="@+id/barrioI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
+                android:textSize="18sp"
                 android:textColor="@color/colorPrimaryDark" />
 
 
@@ -97,7 +96,7 @@
                 android:background="@drawable/border_bottom" />
 
             <TextView
-                android:id="@+id/titleDireccionA"
+                android:id="@+id/titleDireccion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -105,15 +104,14 @@
                 android:text="@string/direccionTitleU"
                 android:textSize="18sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/direccionI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:autofillHints=""
-                android:hint="@string/direccionHolderI"
-                android:inputType="text"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"
                 android:selectAllOnFocus="true" />
 
 
@@ -129,15 +127,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:text="@string/tipoTitleC"
+                android:text="@string/tipoTitleA"
                 android:textSize="18sp" />
 
-            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            <TextView
                 android:id="@+id/tipoI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"/>
+                android:layout_marginEnd="12dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"  />
 
             <TextView
                 android:id="@+id/seperator3"
@@ -154,74 +154,16 @@
                 android:text="@string/titleDescripcion"
                 android:textSize="18sp" />
 
-            <EditText
-                android:id="@+id/descripcionC"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/descripcionHolder"
-                android:inputType="textMultiLine"
-                android:selectAllOnFocus="true" />
-
             <TextView
-                android:id="@+id/seperator4"
+                android:id="@+id/descripcionA"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_bottom" />
-
-            <TextView
-                android:id="@+id/titleDescripcionVictima"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:text="@string/descripcionVictimaTitle"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="start|top"/>
 
-            <EditText
-                android:id="@+id/descripcionVictima"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/descripcionVictimaHolder"
-                android:inputType="textMultiLine"
-                android:selectAllOnFocus="true" />
-
-            <TextView
-                android:id="@+id/seperator7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_bottom" />
-
-            <TextView
-                android:id="@+id/titleDescripcionSospecho"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:text="@string/descripcionSospechosoTitle"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/descripcionSospechoso"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="@string/descripcionSospechosoHolder"
-                android:inputType="textMultiLine"
-                android:selectAllOnFocus="true" />
 
             <TextView
                 android:id="@+id/seperator6"
@@ -238,42 +180,26 @@
                 android:text="@string/horaTitle"
                 android:textSize="18sp" />
 
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/hora"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:autofillHints=""
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="start|top"
+                android:selectAllOnFocus="true" />
 
-                <Spinner
-                    android:id="@+id/horaA"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp" />
-
-                <Spinner
-                    android:id="@+id/horaB"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp" />
-
-
-                <Spinner
-                    android:id="@+id/time"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp">
-                </Spinner>
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/seperator7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom" />
 
             <Button
-                android:id="@+id/registro"
+                android:id="@+id/btnDesactivarAccidnete"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
@@ -281,14 +207,10 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="48dp"
                 android:layout_marginBottom="64dp"
-                android:background="@color/colorPrimaryDark"
-                android:text="@string/btnRegistroCrimen"
+                android:background="@color/rojo"
+                android:text="@string/btnDesactivar"
                 android:textColor="#ffffff" />
 
         </LinearLayout>
     </ScrollView>
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.alertacucuta;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -27,8 +29,12 @@ import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -52,6 +58,7 @@ public class RegistroAccidente extends AppCompatActivity {
     @BindView(R.id.horaB) Spinner minuto;
     @BindView(R.id.time) Spinner time;
     @BindView(R.id.registerAccidnete) Button btnRegistro;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -61,42 +68,41 @@ public class RegistroAccidente extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_accidente);
-        ButterKnife.bind(this);
 
-        AuxMethods.createSpinner(AuxMethods.listaBarrios, barrio, this);
-        AuxMethods.createSpinner(AuxMethods.tiposAccidentes, tipo, this);
-        AuxMethods.createSpinner(AuxMethods.hora, hora, this);
-        AuxMethods.createSpinner(AuxMethods.minuto, minuto, this);
-        AuxMethods.createSpinner(AuxMethods.time, time, this);
+            AuxMethods.createSpinner(AuxMethods.listaBarrios, barrio, this);
+            AuxMethods.createSpinner(AuxMethods.tiposAccidentes, tipo, this);
+            AuxMethods.createSpinner(AuxMethods.hora, hora, this);
+            AuxMethods.createSpinner(AuxMethods.minuto, minuto, this);
+            AuxMethods.createSpinner(AuxMethods.time, time, this);
 
-        btnRegistro.setOnClickListener(v -> {
-            if(barrio.getSelectedItemPosition()==0 || TextUtils.isEmpty(direccion.getText().toString()) || tipo.getSelectedItemPosition()==0
-                    || TextUtils.isEmpty(descripcion.getText().toString()) || TextUtils.isEmpty(descripcionVictima.getText().toString())
-                    || hora.getSelectedItemPosition()==0 || minuto.getSelectedItemPosition()==0 || time.getSelectedItemPosition()==0){
-                Toast.makeText(getApplicationContext(), "por favor ingrese toda la informacion", Toast.LENGTH_LONG).show();
-                return;
-            }
-            Accidente registro = new Accidente(user.getUid(), barrio.getSelectedItem().toString(), direccion.getText().toString(), tipo.getSelectedItem().toString(), descripcion.getText().toString(), descripcionVictima.getText().toString(), hora.getSelectedItem().toString()+":"+minuto.getSelectedItem().toString()+" "+time.getSelectedItem().toString());
-            String keyId = mDatabase.push().getKey();
-            mDatabase.child(keyId).setValue(registro);
-            intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        });
+            btnRegistro.setOnClickListener(v -> {
+                if (barrio.getSelectedItemPosition() == 0 || TextUtils.isEmpty(direccion.getText().toString()) || tipo.getSelectedItemPosition() == 0
+                        || TextUtils.isEmpty(descripcion.getText().toString()) || TextUtils.isEmpty(descripcionVictima.getText().toString())
+                        || hora.getSelectedItemPosition() == 0 || minuto.getSelectedItemPosition() == 0 || time.getSelectedItemPosition() == 0) {
+                    Toast.makeText(getApplicationContext(), "por favor ingrese toda la informacion", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Accidente registro = new Accidente(user.getUid(), barrio.getSelectedItem().toString(), direccion.getText().toString(), tipo.getSelectedItem().toString(), descripcion.getText().toString(), descripcionVictima.getText().toString(), hora.getSelectedItem().toString() + ":" + minuto.getSelectedItem().toString() + " " + time.getSelectedItem().toString());
+                String keyId = mDatabase.push().getKey();
+                mDatabase.child(keyId).setValue(registro);
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            });
+            Places.initialize(getApplicationContext(), "AIzaSyCJE4v1u_fCq2X8TAa1FyjHMo_c6P8oW5I");
+            direccion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME);
+                    Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList)
+                            .setLocationRestriction(RectangularBounds.newInstance(
+                                    new LatLng(7.797340, -72.564975),
+                                    new LatLng(7.959478, -72.454595)
+                            ))
+                            .build(RegistroAccidente.this);
+                    startActivityForResult(intent, 100);
+                }
+            });
 
-        Places.initialize(getApplicationContext(), "AIzaSyCJE4v1u_fCq2X8TAa1FyjHMo_c6P8oW5I");
-        direccion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                List<Place.Field> fieldList = Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG, Place.Field.NAME);
-                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, fieldList)
-                        .setLocationRestriction(RectangularBounds.newInstance(
-                                new LatLng(7.797340, -72.564975),
-                                new LatLng(7.959478, -72.454595)
-                        ))
-                        .build(RegistroAccidente.this);
-                startActivityForResult(intent, 100);
-            }
-        });
     }
 
     public void back(View view){

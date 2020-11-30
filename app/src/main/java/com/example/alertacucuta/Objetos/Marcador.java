@@ -2,9 +2,10 @@ package com.example.alertacucuta.Objetos;
 
 import com.google.android.gms.maps.model.LatLng;
 
-public class Marcador {
+
+public class Marcador{
     private Object id;
-    private String  tipo;
+    private String  tipo, descripcion, fecha, hora, tipoTipo, estado;
     private LatLng coordinates;
     public Marcador() {}
 
@@ -27,5 +28,40 @@ public class Marcador {
     }
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public String getTipoTipo() {
+        return tipoTipo;
+    }
+    public void setTipoTipo(String tipoTipo) {
+        this.tipoTipo = tipoTipo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

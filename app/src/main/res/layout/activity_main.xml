@@ -85,24 +85,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.962"
         app:srcCompat="@drawable/nav"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/app_name" />
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="19dp"
-        android:background="@color/green"
+        android:backgroundTint="@color/green"
         android:contentDescription="@string/app_name"
+        android:onClick="showCAIsInfo"
         android:padding="10dp"
+        android:background="@drawable/border"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu"
-        app:srcCompat="@drawable/police_info"
-        android:onClick="showCAIsInfo"/>
+        app:srcCompat="@drawable/police_info" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

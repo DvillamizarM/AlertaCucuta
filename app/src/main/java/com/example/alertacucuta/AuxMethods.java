@@ -74,4 +74,14 @@ public class AuxMethods {
         spinner.setAdapter(adapter);
     }
 
+
+    public static int getIndex(String[] array, String value){
+        for(int i =0; i<array.length; i++){
+            if(array[i].equals(value)){
+                return i;
+            }
+        }
+        return 0;
+    }
+
 }
