@@ -212,40 +212,40 @@
                 android:text="@string/horaTitle"
                 android:textSize="18sp" />
 
-        <LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/horaA"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp" />
+                <Spinner
+                    android:id="@+id/horaA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp" />
 
-            <Spinner
-                android:id="@+id/horaB"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp" />
+                <Spinner
+                    android:id="@+id/horaB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp" />
 
 
-            <Spinner
-                android:id="@+id/time"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="12dp">
-            </Spinner>
+                <Spinner
+                    android:id="@+id/time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp">
+                </Spinner>
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <Button
+            <Button
                 android:id="@+id/registerAccidnete"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -259,19 +259,6 @@
                 android:text="@string/btnRegistroAccidente"
                 android:textColor="#ffffff" />
 
-            <Button
-                android:id="@+id/btnDesactivarAccidnete"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="48dp"
-                android:layout_marginTop="16dp"
-                android:visibility="invisible"
-                android:layout_marginEnd="48dp"
-                android:layout_marginBottom="64dp"
-                android:background="@color/rojo"
-                android:text="@string/btnDesactivar"
-                android:textColor="#ffffff" />
 
         </LinearLayout>
     </ScrollView>

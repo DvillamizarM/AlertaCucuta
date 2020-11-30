@@ -48,7 +48,6 @@ public class RegistroAccidente extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference mDatabase;
     Intent intent;
-
     @BindView(R.id.barrioI) Spinner barrio;
     @BindView(R.id.direccionI) EditText direccion;
     @BindView(R.id.tipoI) Spinner tipo;
@@ -68,7 +67,7 @@ public class RegistroAccidente extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_accidente);
-
+        ButterKnife.bind(this);
             AuxMethods.createSpinner(AuxMethods.listaBarrios, barrio, this);
             AuxMethods.createSpinner(AuxMethods.tiposAccidentes, tipo, this);
             AuxMethods.createSpinner(AuxMethods.hora, hora, this);
@@ -102,7 +101,6 @@ public class RegistroAccidente extends AppCompatActivity {
                     startActivityForResult(intent, 100);
                 }
             });
-
     }
 
     public void back(View view){
