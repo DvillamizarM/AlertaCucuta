@@ -90,6 +90,11 @@ public class RegistroUsuario extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "por favor ingrese correo, contraseña, cédula y teléfono", Toast.LENGTH_LONG).show();
                 return;
             }
+            if(contrasena.getText().toString().length()<6){
+                Toast.makeText(getApplicationContext(), "La contraseña debe ser 6 dígitos o más", Toast.LENGTH_LONG).show();
+                return;
+
+            }
             user = new Usuario(nombre.getText().toString(),  apellido.getText().toString(), cedula.getText().toString(), telefono.getText().toString(), correo.getText().toString(), contrasena.getText().toString(), direccion.getText().toString(), barrio.getSelectedItem().toString());
             enviarDatosUsuario(correo.getText().toString(), contrasena.getText().toString());
         });

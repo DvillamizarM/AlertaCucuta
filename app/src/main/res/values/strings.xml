@@ -35,6 +35,7 @@
     <string name="registrocrimen">Reporte de Crimen</string>
     <string name="registroadesastre">Reporte de Desastre</string>
     <string name="registrcai">Registro de CAI</string>
+    <string name="reporte">Informacion de Reporte</string>
 
     <string name="tipoTitleA">Tipo de Accidente</string>
     <string name="tipoTitleC">Tipo de Crimen</string>

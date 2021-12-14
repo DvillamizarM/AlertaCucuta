@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -17,11 +18,13 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.alertacucuta.Objetos.Marcador;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
@@ -33,6 +36,18 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FetchPhotoRequest;
+import com.google.android.libraries.places.api.net.FetchPhotoResponse;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.FetchPlaceResponse;
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse;
+import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest;
+import com.google.android.libraries.places.api.net.FindCurrentPlaceResponse;
+import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +57,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -50,10 +66,12 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity  implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
+    private static final String TAG = "MainActivity";
     private ArrayList<Marcador> accidentes;
     private ArrayList<Marcador> desastres;
     private ArrayList<Marcador> crimenes;
     private SupportMapFragment mapFragment;
+    private boolean caiClicked = false;
 
     @BindView(R.id.menu) LinearLayout menu;
     @BindView(R.id.imageButton2) ImageButton caiInfo;
@@ -70,6 +88,8 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        Places.initialize(getApplicationContext(), "AIzaSyCJE4v1u_fCq2X8TAa1FyjHMo_c6P8oW5I");
+
         //boilerplate map
        mapFragment = SupportMapFragment.newInstance();
         getSupportFragmentManager()
@@ -81,6 +101,12 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
 
         //database
         mFirebase = FirebaseDatabase.getInstance();
+
+        caiInfo.setOnClickListener(v -> {
+            Toast.makeText(getApplicationContext(), "Dale click al mapa para refrescar", Toast.LENGTH_LONG).show();
+            if(caiClicked) caiClicked = false;
+            else caiClicked = true;
+        });
     }
 
     //boilerplate gMaps
@@ -117,6 +143,10 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
        desastres = recolectarDirecciones("desastres", "blue_alerta", googleMap);
        crimenes = recolectarDirecciones("crimenes", "red_alert", googleMap);
 
+
+        googleMap.setOnMapClickListener(destination -> {
+            mostrarCAI(googleMap, caiClicked);
+        });
 
         googleMap.setOnInfoWindowClickListener(this);
 
@@ -168,7 +198,6 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
         });
     }
 
-
      public ArrayList<Marcador> recolectarDirecciones(String tipo, String icon, GoogleMap googleMap){
         ArrayList<Marcador> direcciones = new ArrayList<>();
         mReference = mFirebase.getReference(tipo);
@@ -200,6 +229,51 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
             public void onCancelled(@NonNull DatabaseError error) {}
         });
         return direcciones;
+     }
+
+     public void mostrarCAI(GoogleMap googleMap, Boolean visible){
+        mReference = mFirebase.getReference("CAI");
+        mReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()) {
+                    for (DataSnapshot dss : snapshot.getChildren()) {
+                        obtenerInfo(dss.child("id").getValue(String.class), googleMap, visible);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+     }
+
+     protected void obtenerInfo(String placeId, GoogleMap googleMap, Boolean visib){
+         final List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.LAT_LNG, Place.Field.NAME, Place.Field.PHONE_NUMBER, Place.Field.ADDRESS);
+         final FetchPlaceRequest request = FetchPlaceRequest.newInstance(placeId, placeFields);
+         PlacesClient placesClient = Places.createClient(this);
+         placesClient.fetchPlace(request).addOnSuccessListener((response) -> {
+             Place place = response.getPlace();
+             Log.i(TAG, "Place found: " + place.getName());
+             String tele = place.getPhoneNumber();
+             if(tele ==null) tele = "Número no está registrado";
+             Marker marker = googleMap.addMarker(new MarkerOptions()
+                     .position(place.getLatLng())
+                     .icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons("police_station", 100, 120)))
+                     .title(place.getName())
+                     .snippet("Teléfono: " + tele + "\n Dirección" + place.getAddress())
+                     .visible(visib)
+             );
+
+         }).addOnFailureListener((exception) -> {
+             if (exception instanceof ApiException) {
+                 final ApiException apiException = (ApiException) exception;
+                 Log.e(TAG, "Place not found: " + exception.getMessage());
+                 final int statusCode = apiException.getStatusCode();
+                 // TODO: Handle error with given status code.
+             }
+         });
+
      }
 
      public void agregarMarcadores(ArrayList<Marcador> m, String icon, GoogleMap googleMap){
@@ -239,6 +313,7 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
          }
         return latLng;
      }
+
 
     @Override
     protected void onPause() {
@@ -288,8 +363,6 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
     }
 
     public void showCAIsInfo(View view){
-        Intent intent = new Intent(this, ListadoCAIs.class);
-        startActivity(intent);
     }
 
 }
